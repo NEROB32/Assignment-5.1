@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar bg-base-100 shadow-md px-6 border-b-4 border-blue-100 sm:flex flex-wrap p-5 space-y-8">
+
+        <div class="flex-1 flex items-center gap-2 ">
+            <img src="./assets/github-logo.png" class="w-6">
+            <span class="font-semibold text-lg">GitHub Issues Tracker</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+
+            <input type="text" placeholder="Search issues..." class="input input-bordered input-sm w-56" />
+
+            <button class="btn btn-primary btn-sm">
+                + New Issue
+            </button>
+
+        </div>
+
+    </header>
+    <main>
+
+        <div class="bg-gray-200 p-4 rounded-lg flex gap-2 w-full sm:flex flex-wrap space-y-8 ">
+
+            <button id="all-filter-btn" onclick="toggleStyle('all-filter-btn')"
+                class="btn bg-blue-700 text-white border-none filter-btn">
+                All
+            </button>
+
+            <button id="open-filter-btn" onclick="toggleStyle('open-filter-btn')"
+                class="btn bg-gray-300 text-gray-500 border filter-btn">
+                Open
+            </button>
+
+            <button id="closed-filter-btn" onclick="toggleStyle('closed-filter-btn')"
+                class="btn bg-gray-300 text-gray-500 border filter-btn">
+                Closed
+            </button>
+
+        </div>
+
+        <section class="p-6">
+
+            <div class="flex justify-between items-center mb-6 bg-gray-200 p-4 rounded-lg gap-2 w-full">
+                <div class="">
+                    <h2 id="issue-count" class="text-xl font-bold">0 Issues</h2>
+                    <p class="text-sm text-gray-500">
+                        Track and manage your project issues
+                    </p>
+                </div>
+
+                <div class="flex gap-4 text-sm">
+                    <p class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                        Open
+                    </p>
+
+                    <p class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        Closed
+                    </p>
+                </div>
+            </div>
+
+            <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                
+            </div>
+
+            <div id="loadingSpinner" class="h-[60vh] flex hidden justify-center items-center">
+                    <span class="loading loading-dots loading-xl"></span>
+                </div>
+
+        </section>
+
+        <dialog id="issue-details-modal" class="modal">
+
+                <div class="bg-white w-full max-w-2xl rounded-xl shadow-xl">
+
+                    
+                    <div class="flex items-start justify-between p-6 ">
+                        <h2 class="text-2xl font-bold text-gray-800" id="modalTitle">Issue Details
+                        </h2>
+                        
+                        <button class="btn btn-sm btn-circle btn-ghost" onclick="issueDetailsModal.close()">✕</button>
+                    </div>
+
+                    <div class="px-6 pt-4">
+                        <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500">
+                            <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-medium "
+                                id="modalStatus">
+                            </span>
+                            <span id="modalFooter">• 22/02/2026</span>
+                        </div>
+                    </div>
+
+                   
+                    <div class="px-6 pt-4 flex gap-2">
+                    
+                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-semibold"
+                            id="modalLabels">
+
+                        </span>
+                       
+                    </div>
+
+                   
+                    <div class="px-6 pt-4">
+                        <p class="text-gray-600 leading-relaxed " id="modalDescription">
+                        </p>
+                    </div>
+
+                    <div class="px-6 py-6 mt-4 bg-gray-50 grid grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Assignee:</p>
+                            <p class="font-semibold text-gray-800" id="assignee">Fahim Ahmed</p>
+                        </div>
+
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Priority:</p>
+                            <span class="bg-red-500 text-white px-4 py-1 rounded-full text-xs font-bold"
+                                id="modalPriority">
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                   
+                    <div class="modal-action flex justify-end p-6 ">
+                        <form method="dialog">
+                            <button class="btn btn-primary">Close</button>
+                        </form>
+                    </div>
+
+                </div>
+
+        </dialog>
+
+
+
+
+    </main>
+
+
+    <script src="./script/login.js"></script>
+    <script src="./script/main.js"></script>
+    
+</body>
+
+</html>
